@@ -1,0 +1,381 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NeedForJavaScript</title>
+
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.1/howler.min.js"></script>
+
+
+</head>
+<body>
+
+<script src="js/main.js"></script>
+<div id="soundTrack" class="audio"src="https://www.youtube.com/watch?v=nodB5gqt_mU">
+
+</div>
+<div class="score"></div>  
+<div class="game">
+    <div class="start">
+        Старт
+    </div>
+    <div class="gameArea">
+    </div>
+</div>
+<script>
+    //  constants and variables
+
+    const score = document.querySelector('.score');
+    const start = document.querySelector('.start');
+    const gameArea = document.querySelector('.gameArea');
+    const car = document.createElement('div');
+    const bgi = document.createElement('div');
+
+
+    car.classList.add('car');
+    bgi.classList.add('bgi');
+    // event listeners
+
+    start.addEventListener('click', startGame);
+    document.addEventListener('keydown', startRun)
+    document.addEventListener('keyup', stopRun)
+
+    // objects
+    const keys = 
+    {
+
+        ArrowUp: false,
+        ArrowDown: false,
+        ArrowRight: false,
+        ArrowLeft: false
+
+    };
+    const setting = 
+    {
+
+        start: false,
+        score: 0,
+        speed: 5,
+        traffic: 2.2,
+        isDebug: true,
+
+    };
+    // functions
+
+    function moveBgi()
+    {
+        let bgi = document.querySelector('');
+    }
+    function playMusic()
+    {
+
+        let soundtrack = new Audio('C:/Users/Пользователь/Desktop/snake/sounds/riddim.mp3');
+
+    }
+    playMusic();
+    function getQuantityElementElements(heightElement)
+    {
+
+        return document.documentElement.clientHeight / heightElement + 1;
+
+
+    }
+    function startGame()
+    {
+
+        gameArea.innerHTML = '';
+        score.style.top = 0;
+        car.style.left = '125px';
+        car.style.top + 'auto';
+        car.style.bottom = '10px';
+        start.classList.add('hide');
+
+        for(let i = 0; i < getQuantityElementElements(100); i++)
+        {
+
+            const line = document.createElement('div');
+            line.classList.add('line');
+            line.style.top = (i * 75) + 'px';
+            line.y =  i * 100;
+            gameArea.appendChild(line);
+
+
+        }
+        for(let i = 0; i < getQuantityElementElements(100 * setting.traffic); i++)
+        {
+
+            const enemy = document.createElement('div');
+            let fuckingCount = Math.random().toFixed(1);
+            console.log(fuckingCount);
+            enemy.classList.add('enemy');
+            enemy.y = -100 * setting.traffic * (i + 1);
+            enemy.style.left = Math.floor(Math.random() * (gameArea.offsetWidth - 50)) + 'px';
+            enemy.style.top = enemy.y + 'px';
+
+            switch(fuckingCount)
+            {
+                case "0.0":
+                    console.log("0");
+                    enemy.style.backgroundImage = "url('./img/enemy-car-1.png')";
+                    enemy.style.height = "100px";
+                    // a.style.backgroundColor = "red";
+                    break;
+                case "0.1":
+                    console.log("1");
+                    enemy.style.backgroundImage = "url('./img/enemy-car-2.png')";
+                    enemy.style.height = "100px";
+                    // a.style.backgroundColor = "red";
+                    break;
+                case "0.2":
+                    console.log("2");
+                    enemy.style.backgroundImage = "url('./img/enemy-car-3.png')";
+                    enemy.style.height = "100px";
+                    // a.style.backgroundColor = "red";
+                    break;
+                case "0.3":
+                    console.log("3");
+                    enemy.style.backgroundImage = "url('./img/enemy-car-4.png')";
+                    enemy.style.height = "100px";
+                    // a.style.backgroundColor = "red";
+                    break;
+                case "0.4":
+                    console.log("4");
+                    enemy.style.backgroundImage = "url('./img/enemy-car-5.png')";
+                    enemy.style.height = "100px";
+                    // a.style.backgroundColor = "red";
+                    break;    
+                case "0.5":
+                    console.log("5");
+                    enemy.style.backgroundImage = "url('./img/enemy-car-6.png')";
+                    enemy.style.height = "100px";
+                    // a.style.backgroundColor = "red";
+                    break;
+                case "0.6":
+                    console.log("6");
+                    enemy.style.backgroundImage = "url('./img/enemy-car-7.png')";
+                    enemy.style.height = "100px";
+                    // a.style.backgroundColor = "red";
+                    break;
+                case "0.7":
+                    console.log("7");
+                    enemy.style.backgroundImage = "url('./img/enemy-car-8.png')";
+                    enemy.style.height = "100px";
+                    // a.style.backgroundColor = "red";
+                    break;
+                case "0.8":
+                    console.log("8");
+                    enemy.style.backgroundImage = "url('./img/enemy-car-9.png')";
+                    enemy.style.height = "100px";
+                    // a.style.backgroundColor = "red";
+                    break;
+                case "0.9":
+                    console.log("9");
+                    enemy.style.backgroundImage = "url('./img/enemy-car-10.png')";
+                    enemy.style.height = "100px";
+                    // a.style.backgroundColor = "red";
+                    break;
+                case "1.0":
+                    console.log("1");
+                    enemy.style.backgroundImage = "url('./img/enemy-car-11.png')";
+                    enemy.style.height = "100px";
+                    // a.style.backgroundColor = "red";
+                    break;
+                default:
+                    console.log("ERROR");
+
+            }
+            // enemy.style.backgroundColor = 'blue';
+            gameArea.appendChild(enemy);
+
+        }
+
+        setting.score = 0;
+        setting.start = true;
+        setting.x = car.offsetLeft;
+        setting.y = car.offsetTop;
+        gameArea.appendChild(car);
+        requestAnimationFrame(playGame);
+
+
+    };
+    function startRun(event)
+    {
+
+        event.preventDefault();
+        keys[event.key] = true;
+        // console.log(event.key);
+         
+    };
+    function moveRoad()
+    {
+
+        let lines = document.querySelectorAll('.line');
+        lines.forEach(function(item)
+        {
+
+            item.y += setting.speed;
+            item.style.top = item.y + 'px';
+
+            if(item.y > document.documentElement.clientHeight)
+            {
+
+                item.y = -100;
+
+            }
+
+        })
+
+
+    };
+    function moveEnemy()
+    {
+
+        let enemy = document.querySelectorAll('.enemy');
+
+        enemy.forEach(function(a)
+        {
+            let carRect = car.getBoundingClientRect();
+            let enemyRect = a.getBoundingClientRect();
+
+            // let carVariation = Math.random();
+            // carVariation = carVariation.toFixed(1);
+            // console.log(carVariation);
+               
+
+            if(carRect.top <= enemyRect.bottom && 
+               carRect.right >= enemyRect.left &&
+               carRect.left <= enemyRect.right &&
+               carRect.bottom >= enemyRect.top)
+            {
+                if(setting.isDebug){}
+                else
+                {
+
+                    setting.start = false;
+                    console.log('ДТП');
+                    start.classList.remove('hide');
+                    score.style.top = start.offsetHeight;
+
+                }
+
+
+            }
+
+            // switch(carVariation)
+            // {
+            //     case "0.0":
+            //         console.log("0");
+            //         a.style.backgroundImage = "url('./img/enemy-car-1.png')";
+            //         a.style.height = "100px";
+            //         // a.style.backgroundColor = "red";
+            //         break;
+            //     case "0.1":
+            //         console.log("1");
+            //         a.style.backgroundImage = "url('./img/enemy-car-2.png')";
+            //         a.style.height = "100px";
+            //         // a.style.backgroundColor = "red";
+            //         break;
+            //     case "0.2":
+            //         console.log("2");
+            //         break;
+            //     case "0.3":
+            //         console.log("3");
+            //         break;
+            //     case "0.4":
+            //         console.log("4");
+            //         break;    
+            //     case "0.5":
+            //         console.log("5");
+            //         break;
+            //     case "0.6":
+            //         console.log("6");
+            //         break;
+            //     case "0.7":
+            //         console.log("7");
+            //         break;
+            //     case "0.8":
+            //         console.log("8");
+            //         break;
+            //     case "0.9":
+            //         console.log("9");
+            //         break;
+            //     case "1.0":
+            //         console.log("1");
+            //         break;
+            //     default:
+            //         console.log("ERROR");
+
+            // }
+
+            a.y += setting.speed / 2;
+            a.style.top = a.y + 'px';
+
+            if(a.y >= document.documentElement.clientHeight)
+            {
+
+                a.y = -100 * setting.traffic;
+                a.style.left = Math.floor(Math.random() * (gameArea.offsetWidth - 50)) + 'px';
+
+            }
+
+        })
+
+    }
+    function playGame()
+    {
+        if(setting.start)
+        {
+            setting.score += setting.speed;
+            score.textContent = 'Score: ' + setting.score;
+            moveRoad();
+            moveEnemy();
+
+            if(keys.ArrowLeft && setting.x > 0)
+            {
+
+                setting.x -= setting.speed;
+
+            }
+            if(keys.ArrowRight && setting.x < (gameArea.offsetWidth - car.offsetWidth))
+            {
+
+                setting.x += setting.speed;
+
+            }
+            if(keys.ArrowDown  && setting.y < (gameArea.offsetHeight - car.offsetHeight))
+            {
+
+                setting.y += setting.speed;
+
+            }
+            if(keys.ArrowUp && setting.y > 0)
+            {
+
+                setting.y -= setting.speed;
+
+            }
+
+            car.style.left = setting.x + 'px';       
+            car.style.top = setting.y + 'px';
+            requestAnimationFrame(playGame);
+        }
+
+
+    };
+    function stopRun()
+    {
+
+        event.preventDefault();
+        keys[event.key] = false;
+        // console.log(event.key);
+         
+    };
+
+
+
+</script>
+</body>
+</html>
